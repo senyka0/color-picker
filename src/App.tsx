@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import styled, { createGlobalStyle } from "styled-components";
+import Colum from "./components/Colum";
 
-function App() {
+const App = () => {
+  const AppWrapper = styled.div`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  `;
+  const Global = createGlobalStyle`
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Open-Sans, Helvetica, Sans-Serif;
+    user-select: none;
+  }
+`;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Global />
+      <AppWrapper>
+        {Array.from(Array(Math.floor(window.innerWidth / 100) - 1).keys()).map(() => (
+          <Colum />
+        ))}
+      </AppWrapper>
+    </>
   );
-}
+};
 
 export default App;
